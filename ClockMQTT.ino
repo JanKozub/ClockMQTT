@@ -24,11 +24,8 @@ const char* ssid;
 const char* password;
 const char* mqtt_server;
 
-<<<<<<< HEAD
 byte dec_digits[] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000011, 0b11111000, 0b10000000, 0b10011000 };
 
-=======
->>>>>>> c54ede0d95c954ce29af3c9917c6ab6532a2edb5
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -72,12 +69,6 @@ void setup() {
 }
 void loop() {
   long now = millis();
-
-//  if (now - lastTime2 > 1000) {
-//    lastTime2 = now;
-//    dotsState = !dotsState;
-//    digitalWrite(dots, dotsState);
-//  }
 
   if (!client.connected()) {
     reconnect();

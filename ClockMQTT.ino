@@ -20,12 +20,11 @@
 #define dataPin4 23
 #define clockPin4 22
 
-byte dec_digits[] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000011, 0b11111000, 0b10000000, 0b10011000 };
-hw_timer_t *timer = NULL;
+const char* ssid;
+const char* password;
+const char* mqtt_server;
 
-const char* ssid     = "KOZUB n-kom.pl";
-const char* password = "81427840";
-const char* mqtt_server = "10.0.98.125";
+byte dec_digits[] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000011, 0b11111000, 0b10000000, 0b10011000 };
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -41,9 +40,12 @@ boolean dotsState = true;
 boolean state = true;
 
 void setup() {
+  inportPrivateData();
+  
   pinMode(dots, OUTPUT);
   pinMode(relay, OUTPUT);
   digitalWrite(relay, state);
+  digitalWrite(dots, HIGH);
 
   pinMode(latchPin1, OUTPUT);
   pinMode(clockPin1, OUTPUT);
@@ -68,18 +70,18 @@ void setup() {
 void loop() {
   long now = millis();
 
-  if (now - lastTime2 > 1000) {
-    lastTime2 = now;
-    dotsState = !dotsState;
-    digitalWrite(dots, dotsState);
-  }
+//  if (now - lastTime2 > 1000) {
+//    lastTime2 = now;
+//    dotsState = !dotsState;
+//    digitalWrite(dots, dotsState);
+//  }
 
   if (!client.connected()) {
     reconnect();
   } else {
     client.loop();
 
-    if (now - lastTime3 > 2000) {
+    if (now - lastTime3 > 5000) {
       lastTime3 = now;
       String msg = "clock" + String(state);
       Serial.print("Publish message: ");

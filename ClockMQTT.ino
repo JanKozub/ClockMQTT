@@ -40,7 +40,7 @@ boolean dotsState = true;
 boolean state = true;
 
 void setup() {
-  inportPrivateData();
+  importPrivateData();
   
   pinMode(dots, OUTPUT);
   pinMode(relay, OUTPUT);

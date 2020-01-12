@@ -24,7 +24,7 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
 
-      client.publish("clock", "clock");
+      client.publish("clock", "clock,1");
 
       client.subscribe("clockSub");
     } else {
@@ -44,7 +44,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   }
   if (output.equals("TOGGLE")) {
     state = !state;
-    String msg = "clock" + String(state);
+    String msg = "clock," + String(state);
     client.publish("clock", msg.c_str());
     digitalWrite(relay, state);
   } else {

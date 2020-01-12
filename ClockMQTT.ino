@@ -77,7 +77,7 @@ void loop() {
 
     if (now - lastTime3 > 5000) {
       lastTime3 = now;
-      String msg = "clock" + String(state);
+      String msg = "clock," + String(state);
       Serial.print("Publish message: ");
       Serial.println(msg);
       client.publish("clock", msg.c_str());

@@ -20,9 +20,9 @@
 #define dataPin4 23
 #define clockPin4 22
 
-const char* ssid;
-const char* password;
-const char* mqtt_server;
+char* ssid;
+char* password;
+char* mqtt_server;
 
 byte dec_digits[] = {0b11000000, 0b11111001, 0b10100100, 0b10110000, 0b10011001, 0b10010010, 0b10000011, 0b11111000, 0b10000000, 0b10011000 };
 
@@ -41,7 +41,7 @@ boolean state = true;
 
 void setup() {
   importPrivateData();
-  
+
   pinMode(dots, OUTPUT);
   pinMode(relay, OUTPUT);
   digitalWrite(relay, state);
@@ -81,7 +81,7 @@ void loop() {
       Serial.print("Publish message: ");
       Serial.println(msg);
       client.publish("clock", msg.c_str());
-     
+
     }
   }
 }

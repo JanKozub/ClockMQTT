@@ -57,7 +57,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
     digitalWrite(latchPin3, LOW);
     digitalWrite(latchPin4, LOW);
 
-    shiftOut(dataPin1, clockPin1, MSBFIRST, dec_digits[(int)timeArray[0] - 48]);
+    int dig1 = (int)timeArray[0] - 48;
+    if(dig1 == 0){
+      dig1 = 10;
+    }
+    shiftOut(dataPin1, clockPin1, MSBFIRST, dec_digits[dig1]);
     shiftOut(dataPin2, clockPin2, MSBFIRST, dec_digits[(int)timeArray[1] - 48]);
     shiftOut(dataPin3, clockPin3, MSBFIRST, dec_digits[(int)timeArray[2] - 48]);
     shiftOut(dataPin4, clockPin4, MSBFIRST, dec_digits[(int)timeArray[3] - 48]);
